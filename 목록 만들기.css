@@ -1,0 +1,42 @@
+body{
+  background-color: rgb(204, 243, 204);
+}
+
+h2{
+  color: blue;
+}
+
+ol > li{
+  list-style-type: decimal;
+  padding-left: 40px;
+  list-style-position: inside;
+  color: brown;
+  font-size: 20px;
+  font-family: fantasy;
+}
+
+ul{
+  padding-left: 40px;
+}
+
+ul > li{
+  list-style-type: circle;
+  color: blueviolet;
+}
+
+a{
+  display: inline-block; /* 여백이 더 잘 먹히도록 설정 */
+  margin-top: 20px;     /* 리스트와 링크 사이의 간격 */
+  padding: 5px 10px;   /* 클릭 영역을 넓히기 위한 안쪽 여백 */
+  background-color: white; /* 버튼처럼 보이게 배경색 추가 */
+  color: brown;         /* 글자색을 메뉴와 통일 */
+  text-decoration: none; /* 밑줄 제거 */
+  border-radius: 4px;   /* 모서리를 둥글게 */
+  margin-left: 30px;
+}
+
+a:hover {
+  background-color: brown;
+  color: white;
+  transition: 0.3s; /* 색상이 부드럽게 변하는 효과 */
+}
