@@ -78,6 +78,39 @@ public class PrimeNumbersEfficient {
     }
 }
 
+public class PrimeForEach {
+    public static void main(String[] args) {
+        // 1. 소수들을 담을 배열 (최대 30개라고 가정)
+        int[] primes = new int[30];
+        int count = 0;
+
+        // 2. 소수를 찾아 배열에 저장
+        for (int i = 2; i <= 30; i++) {
+            if (isPrime(i)) {
+                primes[count] = i; // 소수를 배열에 차곡차곡 담기
+                count++;
+            }
+        }
+
+        // 3. 향상된 for문(for-each)으로 출력
+        System.out.println("찾은 소수 목록:");
+        for (int num : primes) {
+            if (num == 0) break; // 배열 뒷부분의 빈 공간(0)은 무시
+            System.out.print(num + " ");
+        }
+    }
+
+    // 우리가 만든 소수 감별사 깐부
+    public static boolean isPrime(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+}
+
+
 *배열 시 주의사항
 1.배열 초기화의 제약
 int[] array; array = {1, 2, 3}; -> array = new int[]{1, 2, 3};
