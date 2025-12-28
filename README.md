@@ -1,3 +1,4 @@
+# 2025.12.28
 # My-TIL-Web-Study
 ## Starte ~ My Study!! 
 ### oh~ My god!
@@ -30,8 +31,8 @@ function hello() {
 | 화요일 | CSS 레이아웃 | 진행중 |
 
 
-#소수 판별 알고리즘 (효율적 방식)
-##핵심 요약
+# 소수 판별 알고리즘 (효율적 방식)
+## 핵심 요약
 
 1. 검증의 무게: 테스트 시 5보다 7이 반복문의 흐름을 확인하기에 더 적당함.
 
@@ -78,6 +79,8 @@ public class PrimeNumbersEfficient {
     }
 }
 
+
+# 2025.12.29 
 public class PrimeForEach {
     public static void main(String[] args) {
         // 1. 소수들을 담을 배열 (최대 30개라고 가정)
@@ -111,7 +114,7 @@ public class PrimeForEach {
 }
 
 
-*배열 시 주의사항
+# 배열 시 주의사항
 1.배열 초기화의 제약
 int[] array; array = {1, 2, 3}; -> array = new int[]{1, 2, 3};
  -자바에서 배열 변수를 선언한 후, 나중에 값을 대입할 때는 {1, 2, 3} 처럼 리터럴만 사용할 수 없습니다. 이 경우에는 array = new int[]{1, 2, 3};과 같이 new 키워드를 명시해 주어야 합니다.
@@ -132,6 +135,18 @@ int[] b = new int[]{1, 2, 3};
 int[] c;
 c = new int[]{1, 2, 3};
 
+# 🚀 자바 기초 및 알고리즘 학습 기록
 
+## 1. 소수 판별 알고리즘 (Prime Number)
+단순한 반복문에서 벗어나 효율적인 로직을 구현하는 연습을 했습니다.
+
+### 핵심 배운 점
+* **효율성**: `i * i <= n` 조건을 사용해 제곱근까지만 검사하여 연산 횟수를 대폭 줄임.
+* **메서드 분리**: `isPrime(int n)` 메서드를 만들어 `boolean` 값을 리턴하는 구조 학습.
+* **Static**: 메인 메서드와 대화하기 위한 `static` '깐부' 시스템 이해.
+
+## 2. 자바 배열 (Array)
+* **배열 초기화**: `new int[]{1, 2, 3}` 처럼 정석적인 생성 문법 숙지.
+* **향상된 for문 (for-each)**: 인덱스 없이 `for (int num : arr)` 형태로 데이터를 꺼내는 편리함 경험.
 
 ```
