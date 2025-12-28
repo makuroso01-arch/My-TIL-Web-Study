@@ -32,7 +32,7 @@ function hello() {
 
 
 # 2025.12.29 
-# 소수 판별 알고리즘 (효율적 방식)
+# 소수 판별 알고리즘 (효율적 방식) - (feat.제미나이)
 ## 핵심 요약
 
 1. 검증의 무게: 테스트 시 5보다 7이 반복문의 흐름을 확인하기에 더 적당함.
@@ -47,72 +47,117 @@ function hello() {
 ## 자바 코드
 
 ```
+# 키포인트
+1. "왜 제곱근까지만 검사하는가?"
+2."static이 왜 깐부인가?"
 
-public class PrimeNumbersEfficient {
-
-    public static void main(String[] args) {
-
-        for (int i = 2; i <= 30; i++) {
-
-            if (isPrime(i)) {
-
-                System.out.print(i + " ");
-
-            }
-
+//효율적 풀이(전통적인 for문 -> **인덱스(번호표)**를 들고 찾아가는 방식
+        //main 메서드 -> 질문 던지는 곳
+        for (int i = 2; i <= 30; i++) {//2~30을 출력
+          if (isPrime(i)) {// 여기서 전문가(소수판변 메서드)를 불러서 "결과값"을 i(편지)로 true 값만 받아옴
+            System.out.print(i + " "); //최종 소수판별 메서드의 리턴결과 출력. 결과가 true(참)일 때만 실행
+          }
         }
-
-    }
-
+      }
+//isPrime -> 질문에 답하는 전문가 *n은 메인에서 받은 i의 정보
     public static boolean isPrime(int n) {
-
-        if (n < 2) return false;
-
-        // 제곱근까지만 확인하여 효율성 극대화
-
-        for (int i = 2; i * i <= n; i++) {
-
-            if (n % i == 0) return false;
-
-        }
-
-        return true;
-
-    }
-}
+        // 이 메서드는 대답(boolean)을 돌려줄 거야! 받은 i값을 n이라 하고 참 거짓으로 응답함. *isPrime = 소수입니까?
+      if (n < 2) return false; // 받은 값이 2보다 작으면 "아니, 소수 아니야(false)" 리턴 시킴.
+        //i * i <= n 은 i <= Math.sqrt(n)과 같습니다. *Math.sqrt(n)는 제곱근 함수.
+        //i * i <= n : 제곱근까지만 확인하기
+        // 1. 약수는 항상 짝이 있음
+        //  예) 숫자 16의 약수
+        //      1 * 16 = 16
+        //      2 * 8  = 16
+        //      4 * 4  = 16
+        //      8 * 2  = 16
+        //      16 * 1 = 16
+        // '4 * 4'를 기점으로 대칭됨. 앞을 기점으로 뒤는 굳이 나누어보지 않아도 알 수 잇음.
+        // 2. 소수인지 확인할 때 조기 종료
+        // 소수는 1과 자기 자싱 외에 약수가 하나라도 있으면 종료
+        //  예} 100이 소수인지 확인
+        //      100의 정중앙인 '10 * 10'까지만 나눠봄
+        //      2로 나누어 떨어지는 순간 이미 2 * 50이라는 짝이 있다는게 확정되니 50까지 확인 할 필요 없이 종료
+        // 컴퓨터는 단순한걸 좋아함!! 제곱근 연산 보다는 단순 곱셈 연산을 선호함.
+      for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return false; // 받은 값(n)이 나누어 떨어지는 값을 찾으면? "응, 소수 아니야(false)" 리턴 시킴.
+      }
+     //위의 모든 검사를 통과했다면?
+      return true; // "응, 이건 진짜 소수야(true)!"
 
 
 # 2025.12.29 
-public class PrimeForEach {
-    public static void main(String[] args) {
-        // 1. 소수들을 담을 배열 (최대 30개라고 가정)
-        int[] primes = new int[30];
-        int count = 0;
+//향상된 for문(for-each)을 활용한 소수 출력 코드 -> 데이터가 직접 나에게 찾아오는 방식
+    public class PrimeForEach {
+        public static void main(String[] args) {
+            // 1. 소수들을 담을 배열 (최대 30개라고 가정)
+            int[] primes = new int[30];
+            int count = 0;
 
-        // 2. 소수를 찾아 배열에 저장
-        for (int i = 2; i <= 30; i++) {
-            if (isPrime(i)) {
-                primes[count] = i; // 소수를 배열에 차곡차곡 담기
-                count++;
+            // 2. 소수를 찾아 배열에 저장
+            for (int i = 2; i <= 30; i++) {
+                if (isPrime(i)) {
+                    primes[count] = i; // 소수를 배열에 차곡차곡 담기
+                    count++;
+                }
+            }
+
+            // 3. 향상된 for문(for-each)으로 출력
+            System.out.println("찾은 소수 목록:");
+            for (int num : primes) {
+                //1. "primes 배열(바구니)에서 숫자를 하나씩 꺼내서 num에 담아라!" 라는 뜻입니다.
+                //2. primes[i]라고 쓸 필요가 없어서 코드가 훨씬 직관적이죠?
+                if (num == 0) break; // 배열 뒷부분의 빈 공간(0)은 무시
+                //1. 우리가 배열 크기를 30으로 넉넉하게 잡았기 때문에, 소수가 아닌 뒷부분은 0으로 채워져 있어요.
+                //2. 그래서 "0이 나오면 다 출력한 거니까 그만해!"라고 멈춰주는 장치를 넣었습니다.
+                System.out.print(num + " ");
             }
         }
 
-        // 3. 향상된 for문(for-each)으로 출력
-        System.out.println("찾은 소수 목록:");
-        for (int num : primes) {
-            if (num == 0) break; // 배열 뒷부분의 빈 공간(0)은 무시
-            System.out.print(num + " ");
+        // 우리가 만든 소수 감별사 깐부
+        public static boolean isPrime(int n) {
+            if (n < 2) return false;
+            for (int i = 2; i * i <= n; i++) {
+                if (n % i == 0) return false;
+            }
+            return true;
         }
     }
 
-    // 우리가 만든 소수 감별사 깐부
-    public static boolean isPrime(int n) {
-        if (n < 2) return false;
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) return false;
-        }
-        return true;
-    }
+    //static의 활용
+    //1. main: "나를 따르라!! (대장 출두)"
+    //프로그램이 시작될 때, 컴퓨터는 메모리 어딘가에 static 계급들만 모여 있는 특별한 광장을 먼저 만듭니다. main은 그 광장의 대장이에요.
+    //
+    //"내가 제일 먼저 나갈 테니, 나를 따르라!" 하고 깃발을 꽂는 거죠.
+    //
+    //이때 객체(new) 같은 건 아직 태어나지도 않은 상태입니다.
+    //
+    //2. isPrime: "너도 합류해!! (참모 모집)"
+    //대장인 main이 광장에서 작전을 짜고 있는데(코드를 실행하는데), 중간에 계산이 필요해요.
+    //
+    //그런데 isPrime이라는 참모가 static 광장에 합류해 있지 않으면(static이 아니면), 대장이 직접 데리러 가거나 새로 만들어야 해서 번거롭습니다.
+    //
+    //그래서 **"너도 이 광장에 미리 합류해 있어!"**라고 static 딱지를 붙여주는 거예요. 그러면 대장이 그냥 이름만 불러도 바로 대답할 수 있으니까요.
+    //
+    //3. 결론적으로 static끼리는 '깐부'입니다
+    //대장(main)이 static 광장에 서서 주변을 둘러봤을 때, 같이 static 딱지를 붙이고 서 있는 isPrime은 **별도의 절차 없이 바로 대화가 가능한 '깐부'**가 되는 겁니다.
+    //
+    //"우리 다 같이 광장에 미리 나와서 대기하자!" → 이게 바로 static의 핵심입니다.
+
+    //-static 광장: 게임이 시작되기 전부터 이미 세팅되어 있는 경기장 (여기에 대장 main과 참모 isPrime이 대기 중)
+    //
+    //-일반 객체 (Non-static): 게임 도중에 필요에 따라 new라는 이름표를 달고 들어오는 참가자들
+    //
+    //-main 대장의 외침: "야! isPrime 깐부! 너 거기 있지? 7이 소수인지 얼른 알려줘!"
+
+    //<지식지도>
+    //테스트 데이터 7: 반복문의 과정을 충분히 보여주는 '적당한 무게'.
+    //
+    //메서드 분리: 전문가(isPrime)에게 일을 맡기는 '분업화'.
+    //
+    //제곱근(i * i): 약수의 대칭성을 이용한 '효율적인 잔머리'.
+    //
+    //Static: 광장에 미리 모여 있는 '깐부 시스템'.
 }
 
 
