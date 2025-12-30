@@ -314,26 +314,32 @@ c = new int[]{1, 2, 3};
 그리고 배열의 모든 요소를 출력해보자.
 (1과 45를 포함하고, 중복값은 허용한다.)
 
- // 1. 길이가 6인 정수형 배열 생성
- int[] lotto = new int[6];
+public class Test10_5 {
+    public static void main(String[] args) {
+        //간단한 로또번호 생성기를 만들어보자. 길이가 6인 정수형 배열을 생성하고, 배열의 모든 요소에 1에서 45까지의 랜덤한 정수를 넣어보자.
+        //그리고 배열의 모든 요소를 출력해보자.(1과 45를 포함하고, 중복값은 허용한다.)
 
- // 2. 1~45 사이의 랜덤 숫자를 배열에 채우기
- for (int i = 0; i < lotto.length; i++) {
-     // 공식: (int)(Math.random() * 개수) + 시작값
-     lotto[i] = (int)(Math.random() * 45) + 1;
- }
+        //1 길이가 6인 정수형 배열 생성
+        int[] lotto = new int[6];
 
- // 3. 향상된 for문으로 출력하기 (복습!)
- System.out.print("이번 주 로또 번호: ");
- for (int num : lotto) {
-     System.out.print(num + " ");
- }
- 
+        //2 1~45 사이의 랜덤 숫자를 배열에 채우기
+        for (int i=0;i<lotto.length;i++){
+            lotto[i] = (int)(Math.random() * 44) + 1;
+            //Math.random()의 기본 범위는 0.0 <= d < 1.0
+            //공식 (int)(Math.random() * 개수) + 시작값; *개수=끝값-시작값
+        }
 
-//향상된 for문 사용 (for-each)
-// "배열 lotto 안의 요소들을 하나씩 순서대로 꺼내서 num에 대입해라"
-for (int num : lotto) {
-    // 이제 num을 마음껏 사용하면 됨!
+        //3 향상된 for문으로 출력
+        System.out.print("이번주 로또번호: ");
+        for (int num : lotto){//배열의 각 요소를 하나씩 꺼내어 변수 num에 담는 올바른 형식.
+            System.out.print(num + " ");
+        }
+        //향상된 for문 사용 (for-each)
+        // "배열 lotto 안의 요소들을 하나씩 순서대로 꺼내서 num에 대입해라"
+        //for (int num : lotto) {
+        //    // 이제 num을 마음껏 사용하면 됨!
+        //}
+    }
 }
 
 # 2부터 30까지의 숫자 중에서 소수만 출력하는 프로그램을 작성하세요.(향상된 for문:for-each 활용)
