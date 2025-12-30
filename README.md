@@ -292,3 +292,35 @@ public class 배열1 {
         System.out.println("최고 점수는: " + max);
     }
 }
+
+
+## 배열 복합문제
+[미션: 성적 관리 프로그램 업그레이드] 어느 반의 학생 6명의 점수가 다음과 같습니다. int[] scores = {85, 42, 95, 60, 28, 77};
+
+1. 평균 점수보다 높은 점수를 받은 학생은 몇 명인지 개수를 구해보세요.
+
+2. 만약 점수가 40점 미만인 학생이 있다면, "재시험 대상자 발견!"이라는 문구를 한 번만 출력해보세요.
+
+int[] scores = {85, 42, 95, 60, 28, 77};
+        int cnt = 0;
+        int sum = 85+42+95+60+28+77;
+        System.out.println(sum);//387
+        double avg = sum/6.0;
+        System.out.println(avg);//64.0
+        int sum1 = 0;
+
+        for (int num : scores){
+            if (num>(int)avg ) cnt++;
+            if (num<40){
+                System.out.println("재시험 대상자 발견!");
+                break;
+            }
+        }
+        System.out.println(cnt);
+
+
+## "배열을 다룰 때는 '전체 조회'와 '조건 탈출'을 구분하자!"
+
+*전체 조회: 합계, 평균 구할 때 (끝까지 가야 함)
+
+*조건 탈출: 특정 대상을 찾았을 때 (break로 효율성 극대화)
