@@ -548,14 +548,6 @@ public class Test12 {
             System.out.println(i);
         }
 
-        //제미나이 응용문제.
-//        int sum=0;
-//        for (int i=0;i<=h;i++){
-//            sum=sum+i;
-//        }
-//        System.out.println(sum);
-    }
-
     //13 정수를 매개변수로 받아, 두 정수 사이의 숫자를 출력하는 메소드를 선언 및 호출해보세요.
     public static void num9(int j, int j1){
         System.out.println("시작점: " + j);
